@@ -1,6 +1,6 @@
-# Contract Analysis RAG
+# Contract Analyzer
 
-This package provides a Retrieval-Augmented Generation (RAG) system for contract analysis. It uses the Meta-Llama-3-8B-Instruct model for generating responses.
+This package provides a RAG system for contract analysis using the Meta-Llama-3-8B-Instruct model.
 
 ## Installation
 
@@ -15,7 +15,13 @@ pip install contract-analyzer
 Here's a basic example of how to use the ContractAnalysisRAG system:
 
 ```python
+from huggingface_hub import login
 from contract_analyzer import ContractAnalysisRAG
+
+# Authenticate with Hugging Face
+token = "your_huggingface_token_here"
+model_name = "meta-llama/Meta-Llama-3-8B-Instruct"
+login(token=token)
 
 # Initialize the RAG system
 rag_system = ContractAnalysisRAG(
@@ -24,7 +30,7 @@ rag_system = ContractAnalysisRAG(
     min_chunk_size=50,
     top_k=3,
     use_semantic_search=True,
-    model_id="meta-llama/Meta-Llama-3-8B-Instruct",
+    model_id=model_name,
     max_new_tokens=512,
     temperature=0.7
 )
@@ -45,3 +51,17 @@ if most_related_chunk:
 else:
     print("No relevant information found.")
 ```
+
+Note: Replace 'your_huggingface_token_here' with your actual Hugging Face token to access the Meta-Llama-3-8B-Instruct model.
+
+## Features
+
+- PDF document processing
+- Semantic search for relevant information retrieval
+- Integration with Meta-Llama-3-8B-Instruct model for response generation
+- Customizable chunking and retrieval parameters
+
+## Requirements
+
+- Python 3.7+
+- Hugging Face account with access to the Meta-Llama-3-8B-Instruct model
